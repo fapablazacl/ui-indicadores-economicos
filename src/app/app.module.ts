@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndicatorComponent } from './indicator/indicator.component';
+import { IndicatorFormatterPipe } from './indicator/indicator-formatter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndicatorComponent
+    IndicatorComponent,
+    IndicatorFormatterPipe
   ],
   imports: [
     BrowserModule,
