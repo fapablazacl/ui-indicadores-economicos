@@ -9,11 +9,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Oro</td>
-      <td>13.8 US$</td>
-      <td>13.8 US$</td>
-      <td>13.8 US$</td>
+    <tr *ngFor="let indicator of indicators">
+      <td>{{indicator.name}}</td>
+      <td>{{indicator.min}}</td>
+      <td>{{indicator.max}}</td>
+      <td>{{indicator.average}}</td>
     </tr>
   </tbody>
 </table>
