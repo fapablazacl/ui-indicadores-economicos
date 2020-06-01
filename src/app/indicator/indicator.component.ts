@@ -17,7 +17,8 @@ export class IndicatorComponent implements OnInit {
     return ['oro', 'plata', 'cobre', 'dolar', 'euro', 'uf'];
   }
 
-  
+  private indicatorNames: string[] = [];
+
   constructor(private indicatorService : IndicatorService) {}
 
   ngOnInit() {
@@ -29,11 +30,7 @@ export class IndicatorComponent implements OnInit {
     this.failed = false;
     this.indicatorsStats = [];
 
-    const indicatorNames = [
-      'oro', 'plata', 'cobre', 'dolar', 'euro', 'uf'
-    ];
-
-    const promises = indicatorNames.map(name => this.indicatorService.getIndicatorStats(name));
+    const promises = this.indicatorNames.map(name => this.indicatorService.getIndicatorStats(name));
 
     Promise.all(promises).then( (indicatorsStats: IndicatorStats[]) => {
       this.indicatorsStats = indicatorsStats;
@@ -44,5 +41,20 @@ export class IndicatorComponent implements OnInit {
       this.failed = true;
       this.failedMessage = `Error al llamar el servicio de indicadores. Verificar que éste se encuentre disponible. Mensaje de error: "${err.message}"`;
     });
+  }
+
+  public onCheckboxChange(event) {
+    const name = event.target.value;
+    const checked = event.target.checked;
+
+    if (checked) {
+      this.indicatorNames.push(name);
+    } else {
+      const index = this.indicatorNames.indexOf(name);
+
+      if (index > - 1) {
+        this.indicatorNames.splice(index, 1);
+      }
+    }
   }
 }
