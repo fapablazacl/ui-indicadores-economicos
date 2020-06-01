@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Indicator } from './indicator';
+import { Indicator as IndicatorStats } from './indicator';
 import { IndicatorService } from './indicator.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { IndicatorService } from './indicator.service';
   styleUrls: ['./indicator.component.css']
 })
 export class IndicatorComponent implements OnInit {
-  public indicators : Indicator[] = [];
-  public loading: boolean = false;
+  public indicatorsStats: IndicatorStats[] = [];
+  public loading = false;
   public failed = false;
   public failedMessage = "";
 
@@ -22,7 +22,7 @@ export class IndicatorComponent implements OnInit {
   public refreshIndicators() : void {
     this.loading = true;
     this.failed = false;
-    this.indicators = [];
+    this.indicatorsStats = [];
 
     const indicatorNames = [
       'oro', 'plata', 'cobre', 'dolar', 'euro', 'uf'
@@ -30,8 +30,8 @@ export class IndicatorComponent implements OnInit {
 
     const promises = indicatorNames.map(name => this.indicatorService.getIndicatorStats(name));
 
-    Promise.all(promises).then( (indicators: Indicator[]) => {
-      this.indicators = indicators;
+    Promise.all(promises).then( (indicatorsStats: IndicatorStats[]) => {
+      this.indicatorsStats = indicatorsStats;
       this.loading = false;
     })
     .catch( (err) => {
