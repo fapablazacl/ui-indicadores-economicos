@@ -5,13 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndicatorComponent } from './indicator/indicator.component';
-import { IndicatorNamePipe } from './indicator/indicator-name.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndicatorComponent,
-    IndicatorNamePipe
+    IndicatorComponent
   ],
   imports: [
     BrowserModule,
