@@ -27,6 +27,9 @@ export class IndicatorComponent implements OnInit {
 
     Promise.all(promises).then( (indicators: Indicator[]) => {
       this.indicators = indicators;
+    })
+    .catch( (err) => {
+      alert("Error al llamar el servicio de indicadores. Favor verificar que se encuentra levantado");
     });
   }
 }

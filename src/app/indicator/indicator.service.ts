@@ -10,24 +10,22 @@ import { environment } from '../../environments/environment';
 export class IndicatorService {
   public constructor(private http : HttpClient) {}
 
-  /**
-   * 
-   * @param keys Arreglo con las claves necesarias para 
-   */
   public getIndicatorStats(key : string) : Promise<Indicator> {
     const host: string = environment.host;
     const url = host + `/stats/${key}`;
 
     return new Promise<Indicator>( (resolve, reject) => {
-      this.http.get(url).toPromise().then((body: any) => {
-        console.log(body);
-
+      this.http.get(url).toPromise()
+      .then((body: any) => {
         resolve({
           name: key,
           min: body.payload.min,
           max: body.payload.max,
           average: body.payload.average
         });
+      })
+      .catch( (err: any) => {
+        reject(err);
       });
     });
   }
