@@ -29,7 +29,7 @@ export class IndicatorComponent implements OnInit {
       this.indicators = indicators;
     })
     .catch( (err) => {
-      alert("Error al llamar el servicio de indicadores. Favor verificar que se encuentra levantado");
+      alert(`Error al llamar el servicio de indicadores. Favor verificar que se encuentra levantado\nMensaje de error: "${err.message}"`);
     });
   }
 }
