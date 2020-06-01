@@ -13,6 +13,11 @@ export class IndicatorComponent implements OnInit {
   public failed = false;
   public failedMessage = "";
 
+  public get availableIndicators(): string[] {
+    return ['oro', 'plata', 'cobre', 'dolar', 'euro', 'uf'];
+  }
+
+  
   constructor(private indicatorService : IndicatorService) {}
 
   ngOnInit() {
