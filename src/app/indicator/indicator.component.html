@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let indicator of indicators">
-      <td>{{indicator.name | indicatorName}}</td>
+      <td>{{indicator.name | titlecase}}</td>
       <td>{{indicator.min | currency}}</td>
       <td>{{indicator.max | currency}}</td>
       <td>{{indicator.average | currency}}</td>

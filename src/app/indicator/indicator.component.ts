@@ -13,7 +13,9 @@ export class IndicatorComponent implements OnInit {
   constructor(private indicatorService : IndicatorService) {}
 
   ngOnInit() {
-    this.indicatorService.getIndicatorOverview().then( (indicators : Indicator[]) =>{
+    this.indicatorService.getIndicatorStats('oro').then( (indicators : Indicator[]) =>{
+      console.log(indicators);
+
       this.indicators = indicators;
     });
   }
