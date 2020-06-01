@@ -9,6 +9,9 @@ import { IndicatorService } from './indicator.service';
 })
 export class IndicatorComponent implements OnInit {
   public indicators : Indicator[] = [];
+  public loading: boolean = false;
+  public failed = false;
+  public failedMessage = "";
 
   constructor(private indicatorService : IndicatorService) {}
 
@@ -17,6 +20,8 @@ export class IndicatorComponent implements OnInit {
   }
 
   public refreshIndicators() : void {
+    this.loading = true;
+    this.failed = false;
     this.indicators = [];
 
     const indicatorNames = [
@@ -27,9 +32,12 @@ export class IndicatorComponent implements OnInit {
 
     Promise.all(promises).then( (indicators: Indicator[]) => {
       this.indicators = indicators;
+      this.loading = false;
     })
     .catch( (err) => {
-      alert(`Error al llamar el servicio de indicadores. Favor verificar que se encuentra levantado\nMensaje de error: "${err.message}"`);
+      this.loading = false;
+      this.failed = true;
+      this.failedMessage = `Error al llamar el servicio de indicadores. Verificar que éste se encuentre disponible. Mensaje de error: "${err.message}"`;
     });
   }
 }

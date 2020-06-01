@@ -1,27 +1,32 @@
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Indicador</th>
-      <th>Mínimo (*)</th>
-      <th>Máximo (*)</th>
-      <th>Promedio (*)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let indicator of indicators">
-      <td>{{indicator.name | uppercase}}</td>
-      <td>{{indicator.min | currency}}</td>
-      <td>{{indicator.max | currency}}</td>
-      <td>{{indicator.average | currency}}</td>
-    </tr>
-  </tbody>
-</table>
+<div [hidden]="loading || failed" >
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Indicador</th>
+        <th>Mínimo (*)</th>
+        <th>Máximo (*)</th>
+        <th>Promedio (*)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let indicator of indicators">
+        <td>{{indicator.name | uppercase}}</td>
+        <td>{{indicator.min | currency}}</td>
+        <td>{{indicator.max | currency}}</td>
+        <td>{{indicator.average | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <p>* Las estadísticas están basadas en los valores acumulados de los últimos 6 meses.</p>
+</div>
+
+<br>
+<h2 class="display-5" [hidden]="!loading">Cargando estadísticas ...</h2>
+
+<div [hidden]="loading || !failed" class="alert alert-danger">{{failedMessage}}</div>
 
 <hr>
-
-<p>* Las estadísticas están basadas en los valores acumulados de los últimos 6 meses.</p>
-
-<hr>
-
-<button class="btn btn-primary" (click)="refreshIndicators()">Refrescar</button>
+<button class="btn btn-primary" [disabled]="loading" (click)="refreshIndicators()">Refrescar</button>
