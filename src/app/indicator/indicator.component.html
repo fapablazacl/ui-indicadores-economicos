@@ -3,14 +3,14 @@
   <thead>
     <tr>
       <th>Indicador</th>
-      <th>Minimo (*)</th>
-      <th>Maximo (*)</th>
+      <th>Mínimo (*)</th>
+      <th>Máximo (*)</th>
       <th>Promedio (*)</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let indicator of indicators">
-      <td>{{indicator.name | titlecase}}</td>
+      <td>{{indicator.name | uppercase}}</td>
       <td>{{indicator.min | currency}}</td>
       <td>{{indicator.max | currency}}</td>
       <td>{{indicator.average | currency}}</td>
@@ -18,6 +18,10 @@
   </tbody>
 </table>
 
-<p>* Valores corresponden a un histórico de los últimos 6 meses</p>
+<hr>
+
+<p>* Las estadísticas están basadas en los valores acumulados de los últimos 6 meses.</p>
+
+<hr>
 
 <button class="btn btn-primary" (click)="refreshIndicators()">Refrescar</button>

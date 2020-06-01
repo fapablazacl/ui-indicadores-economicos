@@ -20,7 +20,7 @@ export class IndicatorComponent implements OnInit {
     this.indicators = [];
 
     const indicatorNames = [
-      'oro', 'plata', 'cobre'
+      'oro', 'plata', 'cobre', 'dolar', 'euro', 'uf'
     ];
 
     const promises = indicatorNames.map(name => this.indicatorService.getIndicatorStats(name));
